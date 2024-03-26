@@ -45,8 +45,8 @@ def ai(arr):
     x = data.drop(columns=['num'])
     data = data.drop(columns=['num'])
 
-    x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.3, random_state=10, shuffle=True)
-    rfc = RandomForestClassifier(random_state=0)
+    x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.2, shuffle=True)
+    rfc = RandomForestClassifier(random_state=2)
     rfc.fit(x_train, y_train)
     y_pred = rfc.predict(x_test)
 
