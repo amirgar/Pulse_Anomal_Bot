@@ -1,6 +1,7 @@
 import telebot
 from ai_pulse_anomaly_detector import ai
 from telebot import types
+from config import token
 
 
 token = '5989923585:AAEw2696hbvmDIlekN_M6W1jGVbAVjYW_Bo'
@@ -55,16 +56,16 @@ def start_work(m, res=False):
                          f'3. Тип боли: \n'
                          f'Если типичная стенокардия - введите цифру 1\n'
                          f'Если атипичная стенокардия - введите цифру 2\n'
-                         f'Если неангинальная стенокардия - введите цифру 3\n'
+                         f'Если не ангинальная стенокардия - введите цифру 3\n'
                          f'Если ничего не чувствуете - введите цифру 4\n'
                          'Стенокардия - https://yandex.ru/turbo?text=https%3A%2F%2Fhealth.yandex.ru%'
                          '2Fdiseases%2Fvasorum%2Fstenocardia\n'
                          'Типичная стенокардия (тип боли №1) - https://clck.ru/39fPqJ\n'
                          'Атипичная стенокардия (тип боли №2) - https://clck.ru/39fPqd\n'
-                         'Неангинальная стенокардия (тип боли №3) - https://clck.ru/39fPqr\n'
+                         'Не ангинальная стенокардия (тип боли №3) - https://clck.ru/39fPqr\n'
                          f'4. Артериальное давление (в состоянии покоя)\n'
                          f'5. Максимальное достигнутая частота сердечных сокращений\n'
-                         f'6. Была ли у вас сткенокардия при физических нагрузках? (да/нет)\n'
+                         f'6. Была ли у вас стенокардия при физических нагрузках? (да/нет)\n'
                          f'Пожалуйста, вводите данные через пробел, иначе мне не удастся вывести вам ответ!\n'
                          f'Например: 28 женщина 2 130 185 да')
     else:
@@ -88,7 +89,12 @@ def start_work(m, res=False):
         else:
             data[-1] = 0
         data = map(int, data)
-        bot.send_message(m.chat.id, f'{ai(data)}. Если хотите начать заново, нажмите на кнопку')
+        try:
+            bot.send_message(m.chat.id, f'{ai(data)}. Если хотите начать заново, нажмите на кнопку')
+        except:
+            bot.send_message(m.chat.id,
+                             f'Вы неправильно ввели данные. Следуйте указанному примеру. Введите /start для возобновления работы бота')
+
 
 
 bot.polling(none_stop=True, interval=0)
