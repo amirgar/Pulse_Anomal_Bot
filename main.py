@@ -4,7 +4,7 @@ from telebot import types
 from config import token
 
 
-token = '5989923585:AAEw2696hbvmDIlekN_M6W1jGVbAVjYW_Bo'
+token = token
 data_user = []
 
 
