@@ -96,5 +96,4 @@ def start_work(m, res=False):
                              f'Вы неправильно ввели данные. Следуйте указанному примеру. Введите /start для возобновления работы бота')
 
 
-
 bot.polling(none_stop=True, interval=0)
